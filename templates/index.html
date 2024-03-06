@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skin Disease Detection System</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles.css') }}">
+</head>
+<body>
+    {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+{% block body %}{% endblock %}
+    <div class="container">
+        <h1>Skin Disease Detection System</h1><br>
+        <div class="menu">
+
+            <div id="flash-messages"></div><br>
+            <input type="file" id="fileInput" accept=".jpg, .jpeg, .png" style="display: none;">
+            <button id="browseBtn">Browse Image</button>
+            <button id="detectBtn">Detect Disease</button>
+            <button id="medicinesBtn">Medicines</button>
+            <button id="liveBtn" data-video-feed-url="{{ url_for('video_feed') }}">Live Detect</button>
+            <button id="resetBtn">Reset</button>
+        </div>
+        <div class="loader" id="loader"></div>
+        <div id="imagePreview"></div>
+        <div id="result" style="display:none;">
+            <h2>Result:</h2>
+            <p id="diseaseName"></p>
+            
+
+        </div>
+        <div id="medicinesContainer">
+            <h3></h3>
+            <p id="mediciness">
+        <ul id="medicines"></ul></p></div>
+    </div>
+
+    <script src="{{ url_for('static',filename='script.js') }}"></script>
+</body>
+</html>
